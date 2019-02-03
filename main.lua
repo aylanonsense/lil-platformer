@@ -13,14 +13,14 @@ local LEVEL_DATA = [[
 ............
 ............
 ........XXX.
-............
+....P.......
 ..X.........
 ..XXXXXXX...
 ............
 ]]
 local TILE_TYPES = {
-  -- Platforms
-  ['X'] = { sprite = 1 }
+  ['P'] = { object = 'player' },
+  ['X'] = { object = 'platform' }
 }
 
 -- Game objects
@@ -37,8 +37,13 @@ function love.load()
   playerImage = loadImage('img/player.png')
   tilesImage = loadImage('img/tiles.png')
 
-  -- Create the player character
-  createPlayer()
+  -- Create platforms and game objects from the level data
+  platforms = {}
+  loadLevel()
+end
+
+-- Updates the game state
+function love.update(dt)
 end
 
 -- Renders the game
@@ -52,17 +57,54 @@ function love.draw()
   love.graphics.rectangle('fill', 0, 0, GAME_WIDTH, GAME_HEIGHT)
   love.graphics.setColor(1, 1, 1, 1)
 
+  -- Draw all of the platforms
+  for _, platform in ipairs(platforms) do
+    drawImage(tilesImage, 1, false, platform.x, platform.y)
+  end
+
   -- Draw the player
   drawImage(playerImage, 1, player.isFacingLeft, player.x, player.y)
 end
 
+function love.keypressed(key)
+  -- TODO
+end
+
+-- Create a 2D grid of tiles
+function loadLevel()
+  for col = 1, LEVEL_NUM_COLUMNS do
+    for row = 1, LEVEL_NUM_ROWS do
+      local i = (LEVEL_NUM_ROWS + 1) * (row - 1) + col
+      local symbol = string.sub(LEVEL_DATA, i, i)
+      local tileData = TILE_TYPES[symbol]
+      if tileData then
+        local x = 16 * (col - 1)
+        local y = 16 * (row - 1)
+        if tileData.object == 'player' then
+          createPlayer(x, y)
+        elseif tileData.object == 'platform' then
+          createPlatform(x, y)
+        end
+      end
+    end
+  end
+end
+
 -- Creates the player
-function createPlayer()
+function createPlayer(x, y)
   player = {
-    x = 60,
-    y = 60,
+    x = x,
+    y = y,
     isFacingLeft = false
   }
+end
+
+-- Creates a platform
+function createPlatform(x, y)
+  table.insert(platforms, {
+    x = x,
+    y = y
+  })
 end
 
 -- Loads a pixelated image
