@@ -127,6 +127,16 @@ function love.update(dt)
       love.audio.play(gemSound:clone())
     end
   end
+
+  -- Keep the player on stage
+  if player.x < 0 then
+    player.x = 0
+  elseif player.x > GAME_WIDTH - player.width then
+    player.x = GAME_WIDTH - player.width
+  end
+  if player.y > GAME_HEIGHT + 50 then
+    player.y = -10
+  end
 end
 
 -- Renders the game
