@@ -44,6 +44,26 @@ end
 
 -- Updates the game state
 function love.update(dt)
+  -- Move the player left / right
+  local moveX = (love.keyboard.isDown('left') and -1 or 0) + (love.keyboard.isDown('right') and 1 or 0)
+  player.vx = 50 * moveX
+  if moveX < 0 then
+    player.isFacingLeft = true
+  elseif moveX > 0 then
+    player.isFacingRight = true
+  end
+
+  -- Jump when space is pressed
+  if love.keyboard.isDown('space') then
+    player.vy = -100
+  end
+
+  -- Accelrate downward (due to gravity)
+  player.vy = player.vy + 2
+
+  -- Apply the player's velocity to her position
+  player.x = player.x + player.vx * dt
+  player.y = player.y + player.vy * dt
 end
 
 -- Renders the game
@@ -64,10 +84,6 @@ function love.draw()
 
   -- Draw the player
   drawImage(playerImage, 1, player.isFacingLeft, player.x, player.y)
-end
-
-function love.keypressed(key)
-  -- TODO
 end
 
 -- Create a 2D grid of tiles
@@ -95,6 +111,10 @@ function createPlayer(x, y)
   player = {
     x = x,
     y = y,
+    vx = 0,
+    vy = 0,
+    width = 16,
+    height = 16,
     isFacingLeft = false
   }
 end
@@ -103,7 +123,9 @@ end
 function createPlatform(x, y)
   table.insert(platforms, {
     x = x,
-    y = y
+    y = y,
+    width = 16,
+    height = 16
   })
 end
 
