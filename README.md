@@ -1,2 +1,2 @@
 # lil-platformer
-A LÖVELY little platformer, a good starting point for aspiring game devs!
+A lil platformer, a good starting point for all you sassy game devs!
