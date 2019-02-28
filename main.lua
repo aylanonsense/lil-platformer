@@ -1,7 +1,7 @@
 -- Constants
 local GAME_WIDTH = 192
 local GAME_HEIGHT = 192
-local RENDER_SCALE = 1
+local RENDER_SCALE = 3
 local LEVEL_NUM_COLUMNS = 12
 local LEVEL_NUM_ROWS = 12
 local LEVEL_DATA = [[
