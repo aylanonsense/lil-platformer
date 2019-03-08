@@ -2,6 +2,6 @@
 main: main.lua
 name: lil platformer
 username: bridgs
-primaryColor: C0C0C0
+primaryColor: FB86C7
 coverImage: cover-image.png
-description: A lil platformer, a good starting point for all you sassy game devs!
+description: A lil platformer with a bouncy lil cloud gal.
