@@ -46,7 +46,7 @@ local ENTITY_TYPES = {
 local MOAT_CONFIG = {
   TickInterval = 1.0 / 60.0,
   WorldSize = 192,
-  ClientVisibility = 192
+  ClientVisibility = 999
 }
 
 -- Create a new game using Moat, which allows for networked online play
