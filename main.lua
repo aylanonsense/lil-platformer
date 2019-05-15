@@ -1,9 +1,6 @@
--- Render constants
+-- Game constants
 local GAME_WIDTH = 192
 local GAME_HEIGHT = 192
-local RENDER_SCALE = 3
-
--- Game constants
 local LEVEL_NUM_COLUMNS = 12
 local LEVEL_NUM_ROWS = 12
 local LEVEL_DATA = [[
@@ -177,11 +174,9 @@ end
 
 -- Renders the game
 function love.draw()
-  -- Scale and crop the screen
-  love.graphics.setScissor(0, 0, RENDER_SCALE * GAME_WIDTH, RENDER_SCALE * GAME_HEIGHT)
-  love.graphics.scale(RENDER_SCALE, RENDER_SCALE)
+  -- Clear the screen
   love.graphics.clear(251 / 255, 134 / 255, 199 / 255)
-  love.graphics.setColor(1, 1, 1, 1)
+  love.graphics.setColor(1, 1, 1)
 
   -- Draw  the platforms
   for _, platform in ipairs(platforms) do
