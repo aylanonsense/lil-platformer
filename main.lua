@@ -34,10 +34,9 @@ local gemSound
 -- Initializes the game
 function love.load()
   -- Load assets
+  love.graphics.setDefaultFilter('nearest', 'nearest')
   playerImage = love.graphics.newImage('img/player.png')
   objectsImage = love.graphics.newImage('img/objects.png')
-  playerImage:setFilter('nearest', 'nearest')
-  objectsImage:setFilter('nearest', 'nearest')
   walkSounds = {
     love.audio.newSource('sfx/walk1.wav', 'static'),
     love.audio.newSource('sfx/walk2.wav', 'static')
