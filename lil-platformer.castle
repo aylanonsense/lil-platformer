@@ -4,6 +4,6 @@ name: lil platformer
 username: bridgs
 primaryColor: FB86C7
 coverImage: cover-image.png
-description: A lil platformer with a bouncy lil cloud gal.
+description: A small platforming game where you jump around and collect gems. A perfect starting point for anyone looking to make their own platformer!
 dimensions: 192x192
 scaling: step
