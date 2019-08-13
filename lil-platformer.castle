@@ -7,3 +7,5 @@ coverImage: cover-image.png
 description: A small platforming game where you jump around and collect gems. A perfect starting point for anyone looking to make their own platformer!
 dimensions: 192x192
 scaling: step
+multiplayer:
+    enabled: true
